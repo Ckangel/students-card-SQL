@@ -1,5 +1,3 @@
--- scripts/reports.sql
-
 -- Calculate the average grade (GPA) for every student
 SELECT 
     s.first_name, 
