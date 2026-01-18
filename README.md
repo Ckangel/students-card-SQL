@@ -1,11 +1,14 @@
-Student Card SQL Project
-Project Overview
+### **Student Card SQL Project**
+
+### **Project Overview**
+
 This project manages a university-style student record system using SQLite. It tracks students, their course enrollments, and their grades. The goal is to provide a "Student Card" view that summarizes academic performance.
 
-Database Schema
+### Database Schema
+
 The database consists of the following four primary tables:
 
-students: Stores personal details (Name, Email).
+students: Stores personal details (Name, Email, Date of Birth).
 
 courses: List of available subjects and credit hours.
 
@@ -32,7 +35,8 @@ VS Code with the SQLite extension.
 
 The SQLite3 Command Line Interface.
 
-How to Build the Database
+### How to Build the Database
+
 Initialize the Schema: Run the schema script to create the tables.
 
 Bash
@@ -51,12 +55,13 @@ sqlite3 students_records.db < queries.sql
 Example Query: Student Average GPA
 SQL
 
-SELECT 
+SELECT
     s.first_name || ' ' || s.last_name AS student_name,
     AVG(e.grade) AS gpa
 FROM students s
 JOIN enrollments e ON s.student_id = e.student_id
 GROUP BY s.student_id;
+
 Project Plan & Timeline
 The development of this project followed a structured timeline:
 
@@ -68,7 +73,9 @@ Phase 3: Advanced Joins & Subqueries for Performance Reporting.
 
 Phase 4: Documentation & Optimization.
 
-Author
+NOTE:  "To execute the full demonstration, ensure all database connections are closed to prevent file locking. Run the master script using: ./sqlite3 sql/data/students_records.db ".read sql/scripts/demo.sql""
+
+Author:
 Charles Kingsley Ajeigbe
 
 {Here is my one minute video link displaying how the software runs}
@@ -76,9 +83,7 @@ Charles Kingsley Ajeigbe
 Software Demo Video
 
 Development Environment
-{Flask library, CSS and HTML with some Javascript}
-
-{python, javascript}
+{SQLite, python, Datasette browser}
 
 Useful Websites
 {Make a list of websites that you found helpful in this project}

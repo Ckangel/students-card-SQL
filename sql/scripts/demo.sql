@@ -69,3 +69,38 @@ GROUP BY c.course_id;
 .print 'DEMO COMPLETE'
 .print '---------------------------------------------------'
 
+-- ===================================================
+-- ADDITIONAL REQUIREMENTS: MODIFY, DELETE, DATE FILTER
+-- ===================================================
+
+.print ''
+.print 'DEMONSTRATING DATA MODIFICATION (UPDATE)'
+.print '---------------------------------------------------'
+-- Requirement: Modify data
+UPDATE enrollments SET grade_score = 100 WHERE student_id = 1 AND course_id = 1;
+.print 'Updated Student 1 Grade to 100.'
+
+.print ''
+.print 'DEMONSTRATING DATA DELETION'
+.print '---------------------------------------------------'
+-- Requirement: Delete data
+DELETE FROM enrollments WHERE grade_score < 50; 
+.print 'Removed any failing grades below 50.'
+
+.print ''
+.print 'DEMONSTRATING DATE RANGE FILTERING'
+.print '---------------------------------------------------'
+-- Requirement: Column with Date/Time + Range Filter
+-- This finds students born between 2000 and 2005
+SELECT first_name, last_name, date_of_birth
+FROM students
+WHERE date_of_birth BETWEEN '2000-01-01' AND '2005-12-31'
+ORDER BY date_of_birth ASC;
+
+.print ''
+.print 'FINAL RE-QUERY OF UPDATED DATA'
+.print '---------------------------------------------------'
+SELECT s.first_name, e.grade_score
+FROM students s
+JOIN enrollments e ON s.student_id = e.student_id
+WHERE s.student_id = 1;

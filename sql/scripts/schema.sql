@@ -10,7 +10,7 @@ CREATE TABLE students (
     first_name    TEXT NOT NULL,
     last_name     TEXT NOT NULL,
     email         TEXT UNIQUE NOT NULL,
-    date_of_birth TEXT NOT NULL, -- ISO 'YYYY-MM-DD'
+    date_of_birth DATE NOT NULL -- ISO 'YYYY-MM-DD'
 );
 
 CREATE TABLE Courses (
