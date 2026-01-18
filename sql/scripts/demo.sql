@@ -1,47 +1,34 @@
--- ===================================================
--- STUDENT CARD SQL SYSTEM: FINAL DEMO SCRIPT
--- Purpose: Automated rebuild and reporting
--- ===================================================
-
--- 1. Setup Formatting & Environment
+-- 1. Setup Environment
 .headers on
 .mode column
+.width 20 20 15 10
 PRAGMA foreign_keys = ON;
 
--- 2. Database Initialization
+-- 2. Build and Populate (Silent mode for setup)
 .print '---------------------------------------------------'
-.print 'STEP 1: INITIALIZING DATABASE SCHEMA...'
+.print 'INITIALIZING STUDENT CARD SYSTEM...'
 .print '---------------------------------------------------'
--- Loads table definitions
-.read sql/migrations/schema.sql
+.read scripts/schema.sql
+.read scripts/seed.sql
 
+-- 3. Run Performance Reports
 .print ''
-.print 'STEP 2: POPULATING SAMPLE DATA...'
-.print '---------------------------------------------------'
--- Loads students, courses, and grades
-.read sql/data/seed.sql
-
--- 3. Advanced Reporting (Phase 3 & 4)
-.print ''
-.print '---------------------------------------------------'
-.print 'REPORT 1: INDIVIDUAL STUDENT CARDS (GPA SUMMARY)'
-.print '---------------------------------------------------'
+.print 'REPORT 1: STUDENT PERFORMANCE SUMMARY (GPA)'
+.print '============================================'
 SELECT 
     s.first_name AS "First Name", 
     s.last_name AS "Last Name", 
-    COUNT(e.course_id) AS "Total Courses",
-    ROUND(AVG(e.grade_score), 2) AS "GPA Average"
+    COUNT(e.course_id) AS "Courses",
+    ROUND(AVG(e.grade_score), 2) AS "GPA"
 FROM students s
 LEFT JOIN enrollments e ON s.student_id = e.student_id
 GROUP BY s.student_id
-ORDER BY "GPA Average" DESC;
+ORDER BY GPA DESC;
 
 .print ''
-.print '---------------------------------------------------'
-.print 'REPORT 2: ACADEMIC EXCELLENCE (Above School Average)'
-.print '---------------------------------------------------'
--- Uses a subquery to compare individual AVG against global AVG
-SELECT first_name, last_name, email
+.print 'REPORT 2: TOP PERFORMERS (Above School Average)'
+.print '============================================'
+SELECT first_name, last_name
 FROM students
 WHERE student_id IN (
     SELECT student_id
@@ -51,15 +38,14 @@ WHERE student_id IN (
 );
 
 .print ''
-.print '---------------------------------------------------'
-.print 'REPORT 3: COURSE POPULARITY & DEMOGRAPHICS'
-.print '---------------------------------------------------'
-SELECT c.course_code, c.course_name, COUNT(e.student_id) AS "Enrolled Students"
+.print 'REPORT 3: COURSE ENROLLMENT STATS'
+.print '============================================'
+SELECT c.course_name, COUNT(e.student_id) AS total_students
 FROM courses c
 LEFT JOIN enrollments e ON c.course_id = e.course_id
 GROUP BY c.course_id;
 
 .print ''
 .print '---------------------------------------------------'
-.print 'DEMO EXECUTION COMPLETE'
+.print 'DEMO COMPLETE'
 .print '---------------------------------------------------'

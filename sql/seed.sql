@@ -1,43 +1,38 @@
--- 02_insert_sample_data.sql
--- Run after 01_create_schema.sql has created the tables.
+-- 1. Insert Sample Students
+INSERT INTO students (first_name, last_name, email) VALUES 
+('Charles', 'Ajeigbe', 'charles@example.com'),
+('Amara', 'Kone', 'amara@example.com'),
+('Kofi', 'Mensah', 'kofi@example.com'),
+('Sarah', 'Smith', 'sarah@example.com'),
+('Elena', 'Rodriguez', 'elena@example.com'),
+('Kwame', 'Nkrumah', 'kwame@example.com'),
+('Fatima', 'Zahra', 'fatima@example.com'),
+('John', 'Doe', 'john@example.com'),
+('Abena', 'Osei', 'abena@example.com'),
+('Liam', 'Wilson', 'liam@example.com');
 
-BEGIN TRANSACTION;
+-- 2. Insert Sample Courses
+INSERT INTO courses (course_code, course_name, credits) VALUES 
+('CS101', 'Intro to Programming', 3),
+('DB201', 'Database Systems', 4),
+('WEB301', 'Advanced Web Development', 3),
+('DS102', 'Data Science Basics', 4);
 
--- Students
-INSERT INTO Students (student_id, first_name, last_name, date_of_birth, gender, major) VALUES
-(1, 'Alice',   'Johnson', '2003-03-15', 'F', 'Computer Science'),
-(2, 'Bob',     'Smith',   '2002-07-21', 'M', 'Mathematics'),
-(3, 'Carla',   'Lopez',   '2001-11-02', 'F', 'Physics'),
-(4, 'David',   'Ng',      '2000-01-10', 'M', 'Computer Science'),
-(5, 'Eve',     'Martin',  '2003-09-05', 'F', 'Economics');
-
--- Courses
-INSERT INTO Courses (course_id, course_code, course_name, credits) VALUES
-(101, 'CS101',   'Intro to Programming', 3),
-(102, 'CS201',   'Data Structures',      4),
-(201, 'MATH101', 'Calculus I',           4),
-(202, 'PHYS101', 'General Physics',      4);
-
--- Enrollments
-INSERT INTO Enrollments (enrollment_id, student_id, course_id, semester, year) VALUES
-(1, 1, 101, 'Fall',   2025),
-(2, 1, 201, 'Fall',   2025),
-(3, 2, 201, 'Fall',   2025),
-(4, 2, 101, 'Spring', 2026),
-(5, 3, 202, 'Fall',   2025),
-(6, 4, 101, 'Fall',   2025),
-(7, 4, 102, 'Spring', 2026),
-(8, 5, 201, 'Spring', 2026);
-
--- Grades
-INSERT INTO Grades (grade_id, enrollment_id, letter_grade, numeric_score) VALUES
-(1, 1, 'A', 95.0),
-(2, 2, 'B', 82.0),
-(3, 3, 'C', 75.0),
-(4, 4, 'A', 91.0),
-(5, 5, 'B', 88.0),
-(6, 6, 'A', 97.0),
-(7, 7, 'B', 84.0),
-(8, 8, 'A', 93.0);
-
-COMMIT;
+-- 3. Insert Sample Enrollments with varying grades
+-- Let's give Charles and Amara high scores to test "Top Performer" reports
+INSERT INTO enrollments (student_id, course_id, grade_score, semester) VALUES 
+(1, 1, 95.5, 'Fall 2025'), -- Charles
+(1, 2, 88.0, 'Fall 2025'),
+(2, 1, 92.0, 'Fall 2025'), -- Amara
+(2, 3, 98.0, 'Fall 2025'),
+(3, 1, 75.0, 'Fall 2025'), -- Kofi
+(3, 4, 82.0, 'Fall 2025'),
+(4, 2, 65.0, 'Fall 2025'), -- Sarah
+(4, 3, 70.5, 'Fall 2025'),
+(5, 1, 88.5, 'Fall 2025'), -- Elena
+(5, 4, 91.0, 'Fall 2025'),
+(6, 2, 79.0, 'Fall 2025'), -- Kwame
+(7, 3, 85.0, 'Fall 2025'), -- Fatima
+(8, 1, 60.0, 'Fall 2025'), -- John
+(9, 2, 94.0, 'Fall 2025'), -- Abena
+(10, 4, 72.0, 'Fall 2025'); -- Liam
