@@ -8,8 +8,9 @@ PRAGMA foreign_keys = ON;
 .print '---------------------------------------------------'
 .print 'INITIALIZING STUDENT CARD SYSTEM...'
 .print '---------------------------------------------------'
-.read scripts/schema.sql
-.read scripts/seed.sql
+.read /CODES/students-card-SQL/sql/scripts/schema.sql
+.read /CODES/students-card-SQL/sql/data/seed.sql
+.read /CODES/students-card-SQL/sql/migrations/schema.sql
 
 -- 3. Run Performance Reports
 .print ''
