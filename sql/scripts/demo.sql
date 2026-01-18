@@ -12,6 +12,24 @@ PRAGMA foreign_keys = ON;
 .read /CODES/students-card-SQL/sql/data/seed.sql
 .read /CODES/students-card-SQL/sql/migrations/schema.sql
 
+-- Force a visible test
+.print 'TESTING DATA PRESENCE...'
+SELECT 'Students Count: ', COUNT(*) FROM students;
+SELECT 'Enrollments Count: ', COUNT(*) FROM enrollments;
+-- ... setup code ...
+
+.print 'STEP 2: POPULATING SAMPLE DATA...'
+.read sql/data/seed.sql
+
+-- >>> PLACE TEST HERE <<<
+.print '---------------------------------------------------'
+.print 'DATA HEALTH CHECK'
+SELECT 'Students Count: ' AS Label, COUNT(*) AS Total FROM students;
+SELECT 'Enrollments Count: ' AS Label, COUNT(*) AS Total FROM enrollments;
+.print '---------------------------------------------------'
+
+-- ... rest of your reports ...
+
 -- 3. Run Performance Reports
 .print ''
 .print 'REPORT 1: STUDENT PERFORMANCE SUMMARY (GPA)'
@@ -50,3 +68,4 @@ GROUP BY c.course_id;
 .print '---------------------------------------------------'
 .print 'DEMO COMPLETE'
 .print '---------------------------------------------------'
+

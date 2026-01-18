@@ -1,16 +1,17 @@
--- Enable Foreign Key support (Required for SQLite)
+-- sql/migrations/schema.sql
 PRAGMA foreign_keys = ON;
+DROP TABLE IF EXISTS enrollments;
+DROP TABLE IF EXISTS courses;
+DROP TABLE IF EXISTS students;
 
--- 1. Create Students Table
 CREATE TABLE students (
     student_id INTEGER PRIMARY KEY AUTOINCREMENT,
     first_name TEXT NOT NULL,
     last_name TEXT NOT NULL,
     email TEXT UNIQUE NOT NULL,
-    enrollment_date DATE DEFAULT CURRENT_DATE
+    date_of_birth TEXT NOT NULL
 );
 
--- 2. Create Courses Table
 CREATE TABLE courses (
     course_id INTEGER PRIMARY KEY AUTOINCREMENT,
     course_code TEXT UNIQUE NOT NULL,
@@ -18,14 +19,13 @@ CREATE TABLE courses (
     credits INTEGER DEFAULT 3
 );
 
--- 3. Create Enrollments Table (The Junction Table)
--- This table links students to courses and stores the grades
 CREATE TABLE enrollments (
     enrollment_id INTEGER PRIMARY KEY AUTOINCREMENT,
     student_id INTEGER NOT NULL,
     course_id INTEGER NOT NULL,
     grade_score REAL CHECK(grade_score >= 0 AND grade_score <= 100),
     semester TEXT,
+    year INTEGER,
     FOREIGN KEY (student_id) REFERENCES students(student_id) ON DELETE CASCADE,
     FOREIGN KEY (course_id) REFERENCES courses(course_id) ON DELETE CASCADE
 );

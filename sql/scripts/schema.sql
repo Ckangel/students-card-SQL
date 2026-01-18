@@ -5,13 +5,12 @@ DROP TABLE IF EXISTS Enrollments;
 DROP TABLE IF EXISTS Courses;
 DROP TABLE IF EXISTS Students;
 
-CREATE TABLE Students (
-    student_id    INTEGER PRIMARY KEY,
+CREATE TABLE students (
+    student_id    INTEGER PRIMARY KEY AUTOINCREMENT,
     first_name    TEXT NOT NULL,
     last_name     TEXT NOT NULL,
+    email         TEXT UNIQUE NOT NULL,
     date_of_birth TEXT NOT NULL, -- ISO 'YYYY-MM-DD'
-    gender        TEXT,
-    major         TEXT
 );
 
 CREATE TABLE Courses (
@@ -25,6 +24,7 @@ CREATE TABLE Enrollments (
     enrollment_id INTEGER PRIMARY KEY,
     student_id    INTEGER NOT NULL,
     course_id     INTEGER NOT NULL,
+    grade_score REAL CHECK(grade_score >= 0 AND grade_score <= 100),
     semester      TEXT NOT NULL,
     year          INTEGER NOT NULL,
     FOREIGN KEY (student_id) REFERENCES Students(student_id),
