@@ -78,15 +78,15 @@ NOTE:  "To execute the full demonstration, ensure all database connections are c
 Author:
 Charles Kingsley Ajeigbe
 
-{Here is my one minute video link displaying how the software runs}
+{Here is my video link displaying how the software runs}
 
-Software Demo Video
+Software Demo Video: https://www.youtube.com/watch?v=VuiLcZW19MQ
 
 Development Environment
-{SQLite, python, Datasette browser}
+{SQLite, python, Datasette IDE}
 
 Useful Websites
-{Make a list of websites that you found helpful in this project}
+{list of websites that I found helpful in this project}
 
-Web Site Name
-Web Site Name
+[Web Site Name](https://pika.forklabs.com/subscription/form)
+[Web Site Name](https://www.youtube.com/watch?v=U7nfe4adDw8&list=PLS1QulWo1RIa0-Cs2Qx6GFyiIVVVS9lCS)
