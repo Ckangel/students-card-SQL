@@ -82,10 +82,10 @@ Charles Kingsley Ajeigbe
 
 Software Demo Video: https://www.youtube.com/watch?v=VuiLcZW19MQ
 
-Development Environment
+###Development Environment
 {SQLite, python, Datasette IDE}
 
-Useful Websites
+###Useful Websites
 {list of websites that I found helpful in this project}
 
 [Web Site Name](https://pika.forklabs.com/subscription/form)
